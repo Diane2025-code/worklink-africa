@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkLink Africa - Connecting Youth with Opportunities</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(236, 72, 153, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ec4899, #be185d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ec4899;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            padding: 2rem 0;
+        }
+
+        .section {
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.1);
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.4s; }
+        .section:nth-child(4) { animation-delay: 0.6s; }
+        .section:nth-child(5) { animation-delay: 0.8s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #ec4899, #be185d);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-content {
+            padding: 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+            background: linear-gradient(45deg, #ec4899, #f472b6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            color: #e2e8f0;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #ec4899, #be185d);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem;
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, #be185d, #9f1239);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(236, 72, 153, 0.3);
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: #ec4899;
+            box-shadow: 0 15px 30px rgba(236, 72, 153, 0.2);
+            background: linear-gradient(135deg, #fdf2f8, #fce7f3);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Prototype Mockup */
+        .mockup-container {
+            background: linear-gradient(135deg, #4a5568, #2d3748);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phone-mockup {
+            background: white;
+            border-radius: 25px;
+            padding: 1rem;
+            max-width: 300px;
+            margin: 0 auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .phone-mockup:hover {
+            transform: scale(1.05);
+        }
+
+        .mockup-screen {
+            background: linear-gradient(135deg, #ec4899, #be185d);
+            border-radius: 15px;
+            padding: 1rem;
+            color: white;
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #ec4899, #be185d);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        /* Testimonials */
+        .testimonial {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+            border-left: 5px solid #ec4899;
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"';
+            font-size: 4rem;
+            color: #ec4899;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+        }
+
+        /* Forms */
+        .form-container {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #cbd5e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #ec4899;
+        }
+
+        /* Badges */
+        .badge {
+            background: linear-gradient(135deg, #ec4899, #be185d);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 0.2rem;
+            display: inline-block;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                padding: 1rem;
+            }
+        }
+
+        /* Interactive Elements */
+        .interactive-demo {
+            background: linear-gradient(135deg, #4a5568, #2d3748);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .demo-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .demo-button {
+            background: linear-gradient(135deg, #ec4899, #be185d);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .demo-button:hover {
+            background: linear-gradient(135deg, #be185d, #9f1239);
+            transform: translateY(-2px);
+        }
+
+        .demo-content {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Success Animation */
+        .success-animation {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            animation: celebrate 1s ease;
+        }
+
+        @keyframes celebrate {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .floating-icons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+            color: #ec4899;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Special highlight sections */
+        .highlight-section {
+            background: linear-gradient(135deg, #fdf2f8, #fce7f3);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 1px solid #ec4899;
+        }
+
+        .highlight-section h3 {
+            color: #be185d;
+            margin-bottom: 1rem;
+        }
+
+        /* Updated partner cards */
+        .partner-card {
+            background: linear-gradient(135deg, #718096, #4a5568);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(113, 128, 150, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-icons">
+        <div class="floating-icon" style="top: 10%; left: 10%;">💼</div>
+        <div class="floating-icon" style="top: 20%; right: 15%;">🚀</div>
+        <div class="floating-icon" style="top: 60%; left: 5%;">💡</div>
+        <div class="floating-icon" style="bottom: 20%; right: 10%;">🌟</div>
+        <div class="floating-icon" style="bottom: 40%; left: 20%;">🎯</div>
+    </div>
+
+    <header>
+        <nav>
+            <div class="logo">WorkLink Africa</div>
+            <ul class="nav-links">
+                <li><a href="#journey">Journey</a></li>
+                <li><a href="#solution">Solution</a></li>
+                <li><a href="#prototype">Prototype</a></li>
+                <li><a href="#reflection">Reflection</a></li>
+                <li><a href="#conclusion">Join Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero section">
+                <h1>🌍 WorkLink Africa</h1>
+                <p>Connecting Youth with Real Opportunities Across Africa</p>
+                <p>Turning Mobile Phones into Bridges Between Talent and Success</p>
+                <a href="#solution" class="cta-button">Discover Our Solution</a>
+                <a href="#prototype" class="cta-button">Try the Demo</a>
+            </section>
+
+            <!-- Journey Section -->
+            <section id="journey" class="section">
+                <div class="section-header">
+                    <h2>🎯 Our Entrepreneurial Journey</h2>
+                    <p>Understanding the Youth Employment Crisis</p>
+                </div>
+                <div class="section-content">
+                    <p>Across Rwanda and many parts of Africa, youth unemployment remains alarmingly high. Despite being the most educated and connected generation, young people often lack access to decent work opportunities, practical experience, or funding to launch businesses.</p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-number">60%</span>
+                            <span>Youth Unemployment Rate</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">200+</span>
+                            <span>Youth Interviewed</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">5</span>
+                            <span>Research Methods Used</span>
+                        </div>
+                    </div>
+
+                    <h3>🔍 Key Research Findings:</h3>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">📊</div>
+                            <h4>Market Gap Analysis</h4>
+                            <p>Lack of access to job market information and skills-opportunity mismatch</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎓</div>
+                            <h4>Education-Industry Gap</h4>
+                            <p>Mismatch between education curriculum and labor market needs</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💰</div>
+                            <h4>Capital Access</h4>
+                            <p>Limited access to funding, credit, and entrepreneurship mentorship</p>
+                        </div>
+                    </div>
+
+                    <div class="form-container">
+                        <h3>📋 Share Your Experience</h3>
+                        <form id="experienceForm">
+                            <div class="form-group">
+                                <label for="age">Your Age:</label>
+                                <select id="age" name="age">
+                                    <option>18-22</option>
+                                    <option>23-26</option>
+                                    <option>27-30</option>
+                                    <option>30+</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="challenge">Biggest Job-Search Challenge:</label>
+                                <textarea id="challenge" name="challenge" rows="3" placeholder="Tell us about your biggest challenge finding work..."></textarea>
+                            </div>
+                            <button type="submit" class="cta-button">Share Your Story</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Solution Section -->
+            <section id="solution" class="section">
+                <div class="section-header">
+                    <h2>💡 Our Solution</h2>
+                    <p>WorkLink Africa Platform</p>
+                </div>
+                <div class="section-content">
+                    <p><strong>WorkLink Africa</strong> is a mobile-first and SMS-enabled platform that connects young Africans with real earning opportunities, job-readiness tools, and peer learning communities. Built to work in both high-tech and low-tech settings.</p>
+
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">📱</div>
+                            <h4>Job Marketplace</h4>
+                            <p>Curated job board tailored to local industries and skills</p>
+                            <span class="badge">Mobile-First</span>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎓</div>
+                            <h4>Micro-Learning</h4>
+                            <p>Bite-sized modules on entrepreneurship, CV writing, freelancing</p>
+                            <span class="badge">Offline Ready</span>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">👥</div>
+                            <h4>Mentor Network</h4>
+                            <p>Connect with professionals in your sector for guidance</p>
+                            <span class="badge">Peer-to-Peer</span>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🏆</div>
+                            <h4>Skills Portfolio</h4>
+                            <p>Digital work portfolio creation and sharing</p>
+                            <span class="badge">Gamified</span>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📢</div>
+                            <h4>SMS Alerts</h4>
+                            <p>Job listings and local workshops via SMS</p>
+                            <span class="badge">Low-Data</span>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎯</div>
+                            <h4>Career Challenges</h4>
+                            <p>Weekly challenges with rewards and recognition</p>
+                            <span class="badge">Engaging</span>
+                        </div>
+                    </div>
+
+                    <div class="interactive-demo">
+                        <h3>🎮 Try Our Features</h3>
+                        <div class="demo-buttons">
+                            <button class="demo-button" onclick="showDemo('jobs')">Find Jobs</button>
+                            <button class="demo-button" onclick="showDemo('learn')">Learn Skills</button>
+                            <button class="demo-button" onclick="showDemo('mentor')">Get Mentorship</button>
+                            <button class="demo-button" onclick="showDemo('portfolio')">Build Portfolio</button>
+                        </div>
+                        <div id="demoContent" class="demo-content">
+                            Select a feature above to see how WorkLink Africa works!
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Prototype Section -->
+            <section id="prototype" class="section">
+                <div class="section-header">
+                    <h2>📱 Interactive Prototype</h2>
+                    <p>Tested with 200+ Youth Across Rwanda</p>
+                </div>
+                <div class="section-content">
+                    <div class="mockup-container">
+                        <div class="phone-mockup" onclick="animatePhone()">
+                            <div class="mockup-screen" id="phoneScreen">
+                                <h3>WorkLink Dashboard</h3>
+                                <div style="margin: 1rem 0;">
+                                    <div style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 10px; margin: 0.5rem 0;">
+                                        🎯 3 New Jobs Near You
+                                    </div>
+                                    <div style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 10px; margin: 0.5rem 0;">
+                                        📚 Complete Your CV Module
+                                    </div>
+                                    <div style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 10px; margin: 0.5rem 0;">
+                                        👥 New Mentor Available
+                                    </div>
+                                </div>
+                                <p style="font-size: 0.9rem; opacity: 0.8;">Click to explore features</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>🧪 User Testing Results (90% Satisfaction)</h3>
+                    <div class="testimonial">
+                        <p><em>"I love how it recommends jobs based on my location."</em></p>
+                        <strong>- Beta Tester, Kigali</strong>
+                    </div>
+                    <div class="testimonial">
+                        <p><em>"Please add offline learning—data is a big issue."</em> → We added PDF toolkits!</p>
+                        <strong>- Beta Tester, Huye</strong>
+                    </div>
+                    <div class="testimonial">
+                        <p><em>"More mentorship please!"</em> → Mentor chat tab created</p>
+                        <strong>- Beta Tester, Musanze</strong>
+                    </div>
+
+                    <div class="form-container">
+                        <h3>🎮 Try the Prototype</h3>
+                        <p>Experience WorkLink Africa firsthand</p>
+                        <form id="prototypeForm">
+                            <div class="form-group">
+                                <label for="interest">What interests you most?</label>
+                                <select id="interest" name="interest">
+                                    <option>Job Search</option>
+                                    <option>Skill Building</option>
+                                    <option>Mentorship</option>
+                                    <option>Entrepreneurship</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="location">Your Location:</label>
+                                <input type="text" id="location" name="location" placeholder="City, Country">
+                            </div>
+                            <button type="submit" class="cta-button">Access Beta Version</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reflection Section -->
+            <section id="reflection" class="section">
+                <div class="section-header">
+                    <h2>🤔 Key Insights & Learnings</h2>
+                    <p>What We Discovered Along the Way</p>
+                </div>
+                <div class="section-content">
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">💪</div>
+                            <h4>Youth Don't Lack Motivation</h4>
+                            <p>They lack tools and access to opportunities</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🤝</div>
+                            <h4>Peer Learning Works</h4>
+                            <p>Especially powerful in areas where mentorship is scarce</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎭</div>
+                            <h4>Identity Matters</h4>
+                            <p>Career identity is tied closely to dignity and mental health</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🗣️</div>
+                            <h4>Include Youth Voices</h4>
+                            <p>Governments and NGOs must include youth in policy design</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🛠️</div>
+                            <h4>Skills Over Degrees</h4>
+                            <p>Job creation is about skills, networks, and proof-of-work</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">⚡</div>
+                            <h4>Actionable Support</h4>
+                            <p>Youth want actionable, not abstract support</p>
+                        </div>
+                    </div>
+
+                    <div class="highlight-section">
+                        <h3>💡 Key Revelation</h3>
+                        <p style="font-size: 1.1rem; font-style: italic;">
+                            "This journey confirmed that scalable, digital-first solutions—when paired with human support—can shift Africa's youth from job-seekers to job-creators."
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Conclusion Section -->
+            <section id="conclusion" class="section">
+                <div class="section-header">
+                    <h2>🚀 Join the Movement</h2>
+                    <p>Building Futures, One Job at a Time</p>
+                </div>
+                <div class="section-content">
+                    <p style="font-size: 1.2rem; text-align: center; margin-bottom: 2rem;">
+                        <strong>WorkLink Africa</strong> is more than an app—it's a youth economic empowerment ecosystem where ideas meet opportunities, certificates become clients, and mentorship sparks momentum.
+                    </p>
+
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🤝</div>
+                            <h4>Partner with Us</h4>
+                            <p>Support job readiness programs or host employer challenges</p>
+                            <a href="mailto:dianeira00@gmail.com" class="cta-button">Partner Now</a>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💰</div>
+                            <h4>Support Our Launch</h4>
+                            <p>Fund a youth skill badge, sponsor a local job fair, or help us scale!</p>
+                            <button class="cta-button" onclick="showSponsorshipOptions()">Support Us</button>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📝</div>
+                            <h4>Join the Waitlist</h4>
+                            <p>Be the first to access WorkLink Africa</p>
+                            <button class="cta-button" onclick="showWaitlistForm()">Join Waitlist</button>
+                        </div>
+                    </div>
+
+                    <div id="waitlistForm" class="form-container" style="display: none;">
+                        <h3>🎉 Join Our Waitlist</h3>
+                        <form id="waitlist">
+                            <div class="form-group">
+                                <label for="name">Full Name:</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="role">I am a:</label>
+                                <select id="role" name="role">
+                                    <option>Job Seeker</option>
+                                    <option>Employer</option>
+                                    <option>Mentor</option>
+                                    <option>Partner Organization</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="cta-button">Join Waitlist</button>
+                        </form>
+                    </div>
+
+                    <div id="sponsorshipOptions" class="form-container" style="display: none;">
+                        <h3>💎 Sponsorship Opportunities</h3>
+                        <div class="features-grid">
+                            <div class="
